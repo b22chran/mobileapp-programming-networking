@@ -15,12 +15,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         private List<Mountain> listOfBerg;
         private LayoutInflater layoutInflater;
-        private OnClickListener onClickListener;
 
-        RecyclerViewAdapter(Context context, List<Mountain> listOfBerg, OnClickListener onClickListener) {
+        RecyclerViewAdapter(Context context, List<Mountain> listOfBerg) {
             this.layoutInflater = LayoutInflater.from(context);
             this.listOfBerg = listOfBerg;
-            this.onClickListener = onClickListener;
         }
 
 
@@ -41,22 +39,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             return listOfBerg.size();
         }
 
-        public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        public class ViewHolder extends RecyclerView.ViewHolder {
             TextView title;
 
             ViewHolder(View itemView) {
                 super(itemView);
-                itemView.setOnClickListener(this);
                 title = itemView.findViewById(R.id.title);
             }
 
-            @Override
-            public void onClick(View view) {
-                onClickListener.onClick(listOfBerg.get(getAdapterPosition()));
-            }
+
         }
 
-        public interface OnClickListener {
-            void onClick(Mountain item);
-        }
+
     }

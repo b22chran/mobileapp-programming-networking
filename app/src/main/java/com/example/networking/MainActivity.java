@@ -31,13 +31,13 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
     @Override
     public void onPostExecute(String json) {
         Log.d("MainActivity", json);
-        // Create GSON object to perform marshall/unmarshall operations
+
         Gson gson = new Gson();
         Type type = new TypeToken<List<Mountain>>() {}.getType();
 
         ArrayList<Mountain> listOfBerg = gson.fromJson(json, type);
 
-        myAdapter = new RecyclerViewAdapter(this, listOfBerg, item-> Toast.makeText(MainActivity.this, item.toString(), Toast.LENGTH_SHORT).show());
+        myAdapter = new RecyclerViewAdapter(this, listOfBerg);
 
         RecyclerView view = findViewById(R.id.recycler_view);
         view.setLayoutManager(new LinearLayoutManager(this));
